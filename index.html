@@ -28,6 +28,10 @@
 
         <p v-show="onSale">On Sale!</p>
         <p>{{ description }}</p>
+
+          <ul>
+            <li v-for="detail in details">{{ detail }}</li>
+          </ul>
         <p>Visit <a :href="url">Vuemastery.com</a> for more</p>
 
     </div>
