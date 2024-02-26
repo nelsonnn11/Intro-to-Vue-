@@ -41,8 +41,7 @@
             <ul>
             <li v-for="size in sizes"> {{ size }} </li> 
             </ul>
-
-           <button class="button" @click="addToCart"> Add to Cart </button>
+           <button class="button" :class="{ disabledButton: !inStock }" @click="addToCart"> Add to Cart </button>
            <button class="button" @click="removeFromCart"> Remove Item </button>
 
 
