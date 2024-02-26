@@ -29,9 +29,13 @@
         <p v-show="onSale">On Sale!</p>
         <p>{{ description }}</p>
 
+
           <ul>
             <li v-for="detail in details">{{ detail }}</li>
           </ul>
+          
+          <div v-for="variant in variants" :key="variant.id">{{variant.color}}</div>
+
         <p>Visit <a :href="url">Vuemastery.com</a> for more</p>
 
     </div>
