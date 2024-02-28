@@ -2,16 +2,17 @@ const app = Vue.createApp({
     data () {
         return{
             cart:0,
+            brand: "Vue Mastery",
             product: "Socks",
             description: "They are socks",
-            image: './assets/images/socks_green.jpg',
+            selectedVariant: 0,
             url: "https://www.vuemastery.com",
             inventory: 0,
-            onSale: false,
+            onSale: true,
             details: ["50 cotton", "30% wool", "20% polyester"],
             variants:[
-                { id: 2234, color: 'green', image: "./assets/images/socks_green.jpg"},
-                { id: 2235, color: 'blue', image: "./assets/images/socks_blue.jpg"}
+                { id: 2234, color: 'green', image: "./assets/images/socks_green.jpg", quantity: 50},
+                { id: 2235, color: 'blue', image: "./assets/images/socks_blue.jpg", quantity: 0}
             ],
             sizes: ["xsmall", "small", "medium", "large", "xlarge"],
         }
@@ -20,8 +21,9 @@ const app = Vue.createApp({
         addToCart(){
             this.cart +=1;
         },
-        updateImage(variantImage){
-            this.image = variantImage;
+        updateVariant(index){
+            this.selectedVariant = index;
+          
         },
         removeFromCart(){
             if (this.cart>0){
@@ -30,14 +32,18 @@ const app = Vue.createApp({
                 this.cart = 0;
             }
            
+        },
+    }, 
+    computed:{
+        title(){
+            return this.brand + " " + this.product;
+        },
+        inStock(){
+            return this.variants[this.selectedVariant].quantity;
+        },
+        image(){
+            return this.variants[this.selectedVariant].image;
         }
-    },
-    computed: {
-        title() {
-            return this.brand + ' ' + this.product
-        }
-    },
-    inStock() {
-        return this.inventory > 0
+      
     }
 })
